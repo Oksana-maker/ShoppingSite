@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EditPizza</title>
+    <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container input-group w-25 d-flex justify-content-center" >
+    <div th:insert="fragment/navbar::navbar"></div>
+    <form method="post" th:action="@{/changePizza}" th:object="${pizza}">
+        <input type="text" readonly th:field="*{id}" class="form-control" placeholder="Id">
+        <input type="text" th:field="*{name}" class="form-control" placeholder="Name">
+        <input type="text" th:field="*{ingredients}" class="form-control" placeholder="Ingredients">
+        <input type="text" th:field="*{price}" class="form-control" placeholder="Price">
+        <button id = "buttonSubmit" class="btn btn-success" type="submit" disabled >Submit</button>
+    </form>
+</div>
+</div>
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+<script src="/js/editPizza.js"></script>
+</body>
+</html>

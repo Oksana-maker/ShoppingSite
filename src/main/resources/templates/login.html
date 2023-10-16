@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Admin page</title>
+    <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <h1>Custom login page</h1>
-<form method="post" th:action="@{/singin}">
-    <label>
-        Username: <input name="username">
-    </label>
-    <br/>
-    <label>
-        Password: <input name="password" type="password">
-    </label>
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-    <br/>
-    <input type="submit">
-</form>
+<div class="container input-group d-flex justify-content-center">
+    <form method="post" th:action="@{/singin}">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Login</label>
+            <input name="username" class="form-control" id="exampleInputEmail1" aria-describedby="Login">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <br/>
+        <input type="submit" class="btn btn-primary"></input>
+    </form>
+</div>
 </body>
 </html>

@@ -29,7 +29,6 @@ public class HomeController {
 
         return "index";
     }
-
     @GetMapping("/private")
     public String privatePage() {
         return "private";

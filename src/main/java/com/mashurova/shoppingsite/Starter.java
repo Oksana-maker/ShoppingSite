@@ -18,7 +18,7 @@ public class Starter implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        List<Pizza> pizzas = List.of(new Pizza("Funghi", "Tomato, Cheese", "pizzaFunghi.jpeg",20.5),
+        List<Pizza> pizzas = List.of(new Pizza("Fungh", "Tomato, Cheese", "pizzaFunghi.jpeg",20.5),
                 new Pizza("Tuna", "Tomato, Fish", "tun.jpeg",18.9),
                 new Pizza("Funghi1", "Tomato, Cheese", "pizzaFunghi.jpeg",20.5),
                 new Pizza("Tuna1", "Tomato, Fish", "tun.jpeg",18.9),

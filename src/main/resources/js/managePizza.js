@@ -1,6 +1,4 @@
 $(function () {
-    // alert('Hello jQuery');
-    // console.log('Hello!')
 
     $('#inputName').on('input', function () {
         // console.log($('#inputName').val());

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Public page</title>
@@ -15,7 +15,7 @@
 </nav>
 <div class="container input-group w-30 d-flex justify-content-center">
     <div th:insert="fragment/navbar::navbar"></div>
-    <table class="table table-striped-columns">
+    <table th:if = "${pizzas.size()>0}"class = "table table-striped-columns ">
         <thead class="table-dark">
         <tr>
             <th>Pizza Name</th>
@@ -34,8 +34,8 @@
             <td><button type="button" class="btn btn-success">Bay</button></td>
         </tr>
         </tbody>
-
     </table>
+    <div class="container" th:unless="${pizzas.size()>0}"><h2>All our pizzas was sold out!!!</h2></div>
 </div>
 <main>
     <form method="post">

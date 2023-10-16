@@ -4,11 +4,6 @@ $(function (){
     function mouseEnter(){
         imageOriginalHeight=$(this).css('height').slice(0,-2);
         $(this).css('height',rowOriginalHeight * 3.5 +"px");
-        //     let children =$(this).children();
-        //     // console.log(children[3]);
-        // console.log(children[3].children[0]);
-        // let image = children[3].children[0];
-        //     image.css('transform','scale(3.5, 3.5)');
         $(this).find("img").css('transform','scale(3.5,3.5');
 
     }

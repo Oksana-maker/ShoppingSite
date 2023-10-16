@@ -26,7 +26,7 @@
         </div>
 
     <div class="container input-group w-30 d-flex justify-content-center">
-        <table class="table table-striped-columns">
+        <table th:if = "${pizzas.size()>0}"class = "table table-striped-columns ">
             <thead class="table-dark">
             <tr>
                 <th>Pizza Name</th>
@@ -34,19 +34,22 @@
                 <th>Price</th>
                 <th>Image</th>
                 <td></td>
+                <td></td>
             </tr>
             </thead>
             <tbody>
-            <tr class="align-middle pizzaRow" th:each="pizza :${pizzas}">
+            <tr class="align-middle" th:each="pizza :${pizzas}">
                 <td th:text="${pizza.name}"></td>
                 <td th:text="${pizza.ingredients}"></td>
-                <td th:text="${#numbers.formatDecimal(pizza.price, 1, 2)} + ' CHF'"></td>
+                <td th:text="${#numbers.formatDecimal(pizza.price,0,'COMMA', 2, 'POINT')} + ' CHF'"></td>
                 <td><img th:src="@{/images/{image}(image=${pizza.imageName})}" height="40px"></td>
-                <td><button type="button" class="btn btn-success">Bay</button></td>
+                <!--        <td><button type="button" class="btn btn-danger">Delete</button></td>-->
+                <td><a th:href="|@{/deletePizza}?id=${pizza.id}|"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a th:href="|@{/editPizza}?id=${pizza.id}|"><button type="button" class="btn btn-danger">Edit</button></a></td>
             </tr>
             </tbody>
-
         </table>
+        <div th:unless="${pizzas.size()>0}"><h2>All our pizzas was sold out!!!</h2></div>
     </div>
         <main>
 
