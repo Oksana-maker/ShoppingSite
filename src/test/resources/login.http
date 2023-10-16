@@ -1,0 +1,21 @@
+GET http://localhost:8080
+
+###
+#SecurityConfig(htt.form)
+GET http://localhost:8080/private
+Accept: text/html
+
+###
+
+GET http://localhost:8080/private
+Accept: text/html
+#Authorization: Basic admin admin
+#Cookie: JSESSIONID=96E5555A03FA0F72696299A990EC4E7B
+
+###
+GET http://localhost:8080/login
+Accept: text/html
+
+###
+GET http://localhost:8080/logout
+Accept: text/html

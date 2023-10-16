@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+    <style>
+        * {
+            background: blue;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+<h1>It is user page</h1>
+<nav>
+    <menu>
+        <li><a th:href="@{/}">Go to main page</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+    </menu>
+</nav>
+<main>
+
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}">
+
+    <script>
+        const logoutButton = document.querySelector('a[href="/logout"]');
+        const csrfInput = document.querySelector('input[name="_csrf"]');
+        const form = new FormData();
+        form.append('_csrf', csrfInput.value);
+        logoutButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch("/logout", {
+                method: 'post',
+                body: form
+            }).then(() => location.reload());
+        });
+    </script>
+</main>
+</body>
+</html>
