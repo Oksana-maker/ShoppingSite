@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/images/margarita.jpeg" type="image/png">
     <title>Public page</title>
     <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -31,7 +32,7 @@
             <td th:text="${pizza.ingredients}"></td>
             <td th:text="${#numbers.formatDecimal(pizza.price, 1, 2)} + ' CHF'"></td>
             <td><img th:src="@{/images/{image}(image=${pizza.imageName})}" height="40px"></td>
-            <td><button type="button" class="btn btn-success">Bay</button></td>
+            <td><button type="button" class="btn btn-success">Buy</button></td>
         </tr>
         </tbody>
     </table>
@@ -61,7 +62,6 @@
     </script>
 </main>
 <script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 <script src="/js/index.js"></script>
 </body>
 </html>

@@ -23,6 +23,10 @@ public class Pizza {
         this.price = price;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public double getPrice() {
         return price;
     }

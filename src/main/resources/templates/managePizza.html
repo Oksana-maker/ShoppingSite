@@ -2,11 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/images/margarita.jpeg" type="image/png">
     <title>Admin page</title>
     <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <h1>It is admin page</h1>
@@ -23,14 +22,34 @@
                     <input id="inputName" required type="text" th:field="*{name}" class="form-control" placeholder="pizza name" aria-label="pizza name" aria-describedby="buttonSubmit">
                     <input id = "inputIngredients" required type="text" th:field="*{ingredients}" class="form-control" placeholder="ingredients" aria-label="pizza name" aria-describedby="buttonSubmit">
                     <input id = "inputPrice" required type="text" th:field="*{price}" class="form-control" placeholder="price" aria-label="price" aria-describedby="buttonSubmit">
-                    <div style="margin-left: 10px">
-                        <input id="addPizzaFoto" type="file" name="image" accept="image/*" class="form-control-file">
-                    </div>
-                    <button id = "buttonSubmit" class="btn btn-success" type="submit" >Submit</button>
+                    <section class="my-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 mx-auto">
+                                    <h2>Upload Image Example</h2>
+<!--                                    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>-->
+                                    <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <input type="file" name="image" accept="image/*" class="form-control-file">
+                                        </div>
+                                        <div class="alert alert-warning" th:if="${conflictMessage}">
+                                            <p th:text="${conflictMessage}"></p>
+<!--                                            <div th:if="${existingPizza}">-->
+<!--                                                <p>Пицца с таким именем уже существует:</p>-->
+<!--                                                <p th:text="${existingPizza.name}"></p>-->
+                                                <!-- Здесь можете отобразить другие данные пиццы -->
+<!--                                            </div>-->
+                                        </div>
+                                    </form>
+                                    <span th:if="${msg != null}" th:text="${msg}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+             <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
         </div>
-
     <div class="container input-group w-30 d-flex justify-content-center">
         <table th:if = "${pizzas.size()>0}"class = "table table-striped-columns ">
             <thead class="table-dark">
@@ -98,7 +117,6 @@
     </div>
 </div>
 <script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="/js/managePizza.js"></script>
 </body>
