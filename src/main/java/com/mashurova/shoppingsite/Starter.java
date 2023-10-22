@@ -18,14 +18,14 @@ public class Starter implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        List<Pizza> pizzas = List.of(new Pizza("Fungh", "Tomato, Cheese", "pizzaFunghi.jpeg",20.5),
-                new Pizza("Tuna", "Tomato, Fish", "tun.jpeg",18.9),
-                new Pizza("Funghi1", "Tomato, Cheese", "pizzaFunghi.jpeg",20.5),
-                new Pizza("Tuna1", "Tomato, Fish", "tun.jpeg",18.9),
-                new Pizza("Funghi2", "Tomato, Cheese", "pizzaFunghi.jpeg",20.5),
-                new Pizza("Tuna2", "Tomato, Fish", "tun.jpeg",18.9),
-                new Pizza("Funghi3", "Tomato, Cheese", "pizzaFunghi.jpeg",20.5),
-                new Pizza("Tuna4", "Tomato, Fish", "tun.jpeg",18.9));
+        List<Pizza> pizzas = List.of(new Pizza("Valentina", "Tomato, Chicken, Parmesan, Onion", "valentina.jpeg",20.5),
+                new Pizza("Veggie Pizza", "Tomato, Eggplant, Arugula, Mushrooms, Cheese", "veggie.jpeg",15.4),
+                new Pizza("Meat Pizza", "Meat, Tomato, Cheese, Pepperoni", "meat.webp",20.5),
+                new Pizza("Margherita Pizza", "Tomato, Mozzarella", "margherita.webp",16.9),
+                new Pizza("BBQ Chicken Pizza", "Sauce BBQ, Cheese, Chicken, Onion ", "bbq.webp",20.75),
+                new Pizza("Hawaiian Pizza", "Pineapple, Cheese, Chicken", "hawaiian.webp",18.9),
+                new Pizza("Buffalo Pizza", "Buffalo sauce, Cheese, Chicken, Onion", "buffalo.webp",20.5),
+                new Pizza("Pepperoni Pizza", "Pepperoni, Cheese, Salami", "salami.webp",19.66));
         pizzaRepository.saveAll(pizzas);
 
     }
