@@ -42,8 +42,20 @@ public class ManageController {
 
         return "managePizza";
     }
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/uploads";
 
-
+//    @GetMapping("/uploadimage") public String displayUploadForm() {
+//        return "imageupload/manage";
+//    }
+//
+//    @PostMapping("/upload") public String uploadImage(Model model, @RequestParam("image") MultipartFile file) throws IOException {
+//        StringBuilder fileNames = new StringBuilder();
+//        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+//        fileNames.append(file.getOriginalFilename());
+//        Files.write(fileNameAndPath, file.getBytes());
+//        model.addAttribute("msg", "Uploaded images: " + fileNames.toString());
+//        return "imageupload/managePizza";
+//    }
     @PostMapping("/addPizza")
     public String addPizza(Pizza pizza, Model model, @RequestParam("image") MultipartFile file) throws IOException {
         log.info("PizzaController::addPizza()");
@@ -60,87 +72,28 @@ public class ManageController {
         return "managePizza";
     }
 
-
-
-
-
-//    @PostMapping("/addPizza")
-//    public String addPizza(Pizza pizza, Model model, @RequestParam("image") MultipartFile file) throws IOException {
-//        log.info("PizzaController::addPizza()");
-//        log.info("Argument: {}" + pizza);
-//        pizza.setImageName(file.getOriginalFilename());
-//
-//        try {
-//            pizzaRepository.save(pizza);
-//        } catch (DataIntegrityViolationException ex) {
-//            // Обработайте нарушение уникального ограничения здесь
-//            log.warn("Пицца с таким же именем уже существует.");
-//
-//            // Добавьте сообщение о конфликте в модель
-//            model.addAttribute("conflictMessage", "Пицца с таким именем уже существует. Выберите другое имя.");
-//
-//            // Также добавьте существующую пиццу с тем же именем в модель
-////            Optional<Pizza> existingPizza = pizzaRepository.(pizza.getName());
-////            existingPizza.ifPresent(pizzaWithSameName -> model.addAttribute("existingPizza", pizzaWithSameName));
-//        }
-//
-//        File f = new File("src/main/resources/static/images", file.getOriginalFilename());
-//        byte[] bytes = file.getBytes();
-//        Files.write(f.toPath(), bytes);
-//
-//        List<Pizza> pizzas = pizzaRepository.findAll();
-//        model.addAttribute("Pizzas", pizzas);
-//        return "managePizza";
-//    }
-
-
-
-
+    @GetMapping("/managePizzaNew")
+    public String getPizzas(Model model) {
+        List<Pizza> pizzas = pizzaRepository.findAll();
+        model.addAttribute("pizzas", pizzas);
+        return "managePizzaNew";
+    }
 
     @GetMapping("/editPizza")
     public String editPizza(@RequestParam Long id, Model model) {
         Optional<Pizza> optionalPizza = pizzaRepository.findById(id);
-        if(optionalPizza.isPresent()){
-            model.addAttribute("pizza",optionalPizza.get());
-        }
-        else{/*Todo*/}
-
         Pizza pizza = optionalPizza.orElseThrow(() -> new IllegalArgumentException("Pizza not found"));
         model.addAttribute("pizza", pizza);
         return "editPizza";
     }
+
     @PostMapping("/changePizza")
-    public String changePizza(Pizza pizza, Model model){
+    public String changePizza(Pizza pizza, Model model) {
         pizzaRepository.save(pizza);
         List<Pizza> pizzas = pizzaRepository.findAll();
-        model.addAttribute("pizzas",pizzas);
+        model.addAttribute("pizzas", pizzas);
         return "managePizza";
     }
-
-
-
-
-
-
-
-
-
-
-//    @GetMapping("/editPizza")
-//    public String editPizza(@RequestParam Long id, Model model) {
-//        Optional<Pizza> optionalPizza = pizzaRepository.findById(id);
-//        Pizza pizza = optionalPizza.orElseThrow(() -> new IllegalArgumentException("Pizza not found"));
-//        model.addAttribute("pizza", pizza);
-//        return "editPizza";
-//    }
-//
-//    @PostMapping("/changePizza")
-//    public String changePizza(Pizza pizza, Model model) {
-//        pizzaRepository.save(pizza);
-//        List<Pizza> pizzas = pizzaRepository.findAll();
-//        model.addAttribute("pizzas", pizzas);
-//        return "managePizza";
-//    }
 
     @GetMapping("/deletePizza")
     public String deletePizza(@RequestParam Long id, Model model) throws IOException {
