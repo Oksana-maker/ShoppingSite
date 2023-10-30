@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Buy Pizza</title>
+</head>
+<div class = "container-fluid">
+  <div class="container input-group d-flex justify-content-center">
+    <div th:insert="fragment/navbar::navbar"></div>
+      <h1>Buy Pizza</h1>
+    <div class="container input-group d-flex justify-content-center" >
+        <div class="row">
+            <div th:text = "${pizza.name}" class="col"></div>
+            <div th:text = "${pizza.ingredients}" class="col"></div>
+            <div th:text = "${pizza.price}" id="pricePizza" class="col"></div>
+            <div>
+                <img th:src="@{/images/{image}(image=${pizza.imageName})}" height="40px">
+            </div>
+            <div class = "row">
+                <select class="from-select col" id="selectAmount" aria-label="Select Pizza amount">
+                    <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}">
+                    </option>
+                </select>
+                <div id="totalPrice" >  </div>
+<div class="rov m-3">
+    <a href="/submitPayment"><button type="button" class="btn btn-success col" >Buy</button></a>
+    <a class="btn btn-danger w-10 col" href="/" type="button">Go Back</a>
+</div>
+
+            </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+<script src="/js/buyPizza.js"></script>
+</body>
+</html>

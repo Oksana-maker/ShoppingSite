@@ -120,4 +120,21 @@ public class ManageController {
 
         return "managePizza";
     }
+    @GetMapping("/buyPizza")
+    public String buyPizza(@RequestParam Long id, Model model) {
+
+        Optional<Pizza> optionalPizza = pizzaRepository.findById(id);
+
+        if (optionalPizza.isPresent()) {
+            model.addAttribute("pizza", optionalPizza.get());
+        } else {
+            throw new IllegalArgumentException("Pizza not found");
+        }
+
+        return "buyPizza";
+    }
+    @GetMapping("/submitPayment")
+    public String submitPayment(){
+        return "submitPayment";
+    }
 }
