@@ -44,40 +44,29 @@ public class ManageController {
     }
     public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/uploads";
 
-//    @GetMapping("/uploadimage") public String displayUploadForm() {
-//        return "imageupload/manage";
-//    }
-//
-//    @PostMapping("/upload") public String uploadImage(Model model, @RequestParam("image") MultipartFile file) throws IOException {
-//        StringBuilder fileNames = new StringBuilder();
-//        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
-//        fileNames.append(file.getOriginalFilename());
-//        Files.write(fileNameAndPath, file.getBytes());
-//        model.addAttribute("msg", "Uploaded images: " + fileNames.toString());
-//        return "imageupload/managePizza";
-//    }
     @PostMapping("/addPizza")
     public String addPizza(Pizza pizza, Model model, @RequestParam("image") MultipartFile file) throws IOException {
         log.info("PizzaController::addPizza()");
         log.info("Argument: {}"+ pizza);
-        pizza.setImageName(file.getOriginalFilename());
+
+        if (file.isEmpty()) {
+            pizza.setImageName("img_5.png");
+        } else {
+            pizza.setImageName(file.getOriginalFilename());
+            try {
+                File f = new File("src/main/resources/static/images", file.getOriginalFilename());
+                byte[] bytes = file.getBytes();
+                Files.write(f.toPath(), bytes);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
         pizzaRepository.save(pizza);
-
-        File f = new File("src/main/resources/static/images", file.getOriginalFilename());
-        byte[] bytes = file.getBytes();
-        Files.write(f.toPath(), bytes);
-
         List<Pizza> pizzas = pizzaRepository.findAll();
         model.addAttribute("pizzas", pizzas);
         return "managePizza";
     }
 
-    @GetMapping("/managePizzaNew")
-    public String getPizzas(Model model) {
-        List<Pizza> pizzas = pizzaRepository.findAll();
-        model.addAttribute("pizzas", pizzas);
-        return "managePizzaNew";
-    }
 
     @GetMapping("/editPizza")
     public String editPizza(@RequestParam Long id, Model model) {
@@ -102,18 +91,16 @@ public class ManageController {
         log.info("Id: " + id);
        Optional<Pizza> p = pizzaRepository.findById(id);
 
-       if(p.isPresent() ) {
-           String path = "C:\\Users\\LENOVO\\Downloads\\mvc (2)\\ShoppingSite\\src\\main\\resources\\static\\images\\" + p.get().getImageName();
-
-           try {
-               Files.delete(Paths.get(path));
-           }catch (IOException e){
-               log.error(e.getMessage());
-           }
-
-       }
-
-
+//       if(p.isPresent() ) {
+//           String path = "C:\\Users\\LENOVO\\Downloads\\mvc (2)\\ShoppingSite\\src\\main\\resources\\static\\images\\" + p.get().getImageName();
+//
+//           try {
+//               Files.delete(Paths.get(path));
+//           }catch (IOException e){
+//               log.error(e.getMessage());
+//           }
+//
+//       }
         pizzaRepository.deleteById(id);
         model.addAttribute("pizza", new Pizza());
         model.addAttribute("pizzas", pizzas);

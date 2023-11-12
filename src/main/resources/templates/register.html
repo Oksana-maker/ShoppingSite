@@ -7,21 +7,51 @@
     <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>New Register</h1>
-<div class="container input-group d-flex justify-content-center">
-    <form th:action="@{/register}" method="post">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Login</label>
-            <input name="username" class="form-control" id="exampleInputEmail1" aria-describedby="Login">
+
+<div class="container w-25 justify-content-center">
+    <div  class="card">
+        <div class="card-body">
+            <form th:action="@{/register}" method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Login</label>
+                    <input name="username" class="form-control" id="exampleInputEmail1" aria-describedby="Login">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <br/>
+                <input type="submit" class="btn btn-success"></input>
+                <a class="btn btn-primary" href="/" type="button">Go Back</a>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <br/>
-        <input type="submit" class="btn btn-primary"></input>
-    </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--<h1>New Register</h1>-->
+<!--<div class="container input-group d-flex justify-content-center">-->
+<!--    <form th:action="@{/register}" method="post">-->
+<!--        <div class="mb-3">-->
+<!--            <label for="exampleInputEmail1" class="form-label">Login</label>-->
+<!--            <input name="username" class="form-control" id="exampleInputEmail1" aria-describedby="Login">-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="exampleInputPassword1" class="form-label">Password</label>-->
+<!--            <input name="password" type="password" class="form-control" id="exampleInputPassword1">-->
+<!--        </div>-->
+<!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+<!--        <br/>-->
+<!--        <input type="submit" class="btn btn-primary"></input>-->
+<!--    </form>-->
 </div>
 </body>
 </html>

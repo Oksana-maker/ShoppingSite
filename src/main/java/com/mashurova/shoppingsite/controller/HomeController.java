@@ -34,4 +34,9 @@ public class HomeController {
         return "private";
     }
 
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "about";
+    }
+
 }
