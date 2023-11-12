@@ -8,7 +8,6 @@
 </head>
 <body>
 <div class="container input-group w-25 d-flex justify-content-center" >
-    <div th:insert="fragment/navbar::navbar"></div>
     <form method="post" th:action="@{/changePizza}" th:object="${pizza}">
         <input type="text" th:field="*{id}" class="form-control" placeholder="Id" hidden>
         <input type="text" th:field="*{name}" class="form-control" placeholder="Name">
@@ -16,7 +15,7 @@
         <input type="text" th:field="*{imageName}" class="form-control" placeholder="Image name">
         <input type="text" th:field="*{price}" class="form-control" placeholder="Price">
         <button id = "buttonSubmit" class="btn btn-success" type="submit">Submit</button>
-
+        <a class="btn btn-primary" href="/" type="button">Go Back</a>
     </form>
 </div>
 </div>

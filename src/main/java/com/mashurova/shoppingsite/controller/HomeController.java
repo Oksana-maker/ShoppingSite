@@ -24,7 +24,7 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model) {
         log.info("PizzaController::index()");
-        List<Pizza> pizzas = pizzaRepository.findAll(PageRequest.of(0, 15, Sort.by("name").ascending())).getContent();
+        List<Pizza> pizzas = pizzaRepository.findAll(PageRequest.of(0, 10, Sort.by("name").ascending())).getContent();
         model.addAttribute("pizzas", pizzas);
 
         return "index";
@@ -32,6 +32,11 @@ public class HomeController {
     @GetMapping("/private")
     public String privatePage() {
         return "private";
+    }
+
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "about";
     }
 
 }

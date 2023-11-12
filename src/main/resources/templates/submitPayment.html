@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Success</title>
+    <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/margarita.jpeg" type="image/png">
+    <title>Submit payment</title>
 </head>
 <body>
-<h1>Pizzza !!! Yor order has been placed Successfully!</h1>
-<a class="btn btn-outline-primary w-10" href="/" type="button">Go Back</a>
+<div class="container input-group w-50 d-flex justify-content-center">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Payment Confirmation</h1>
+        </div>
+        <div class="card-body">
+            <li class="list-group-item">
+                <strong>Pizza Name: </strong><span th:text="${name}" class="col" id="pizzaName"></span>
+            </li>
+        </div>
+        <div class="card-body">
+            <span class="col"><h2>Yor order will be available in 20 minutes at address...</h2></span>
+        </div>
+        <div class="card-footer">
+            <div class="rov m-3">
+                <a class="btn btn-success col" href="/" type="button">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+<script src="/js/buyPizza.js"></script>
 </body>
 </html>

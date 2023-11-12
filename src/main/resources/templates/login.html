@@ -7,8 +7,9 @@
     <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Custom login page</h1>
-<div class="container input-group d-flex justify-content-center">
+<div class="container w-25 justify-content-center">
+<div  class="card">
+    <div class="card-body">
     <form method="post" th:action="@{/singin}">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Login</label>
@@ -22,6 +23,8 @@
         <br/>
         <input type="submit" class="btn btn-primary"></input>
     </form>
+</div>
+</div>
 </div>
 </body>
 </html>

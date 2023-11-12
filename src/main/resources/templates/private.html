@@ -3,17 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/images/margarita.jpeg" type="image/png">
-    <title>Private page</title>
+    <title>Private Page</title>
+    <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1 style="color: red">It is public page</h1>
-<menu>
-    <li><a th:href="@{/}">Go to main page</a></li>
-    <li><a th:href="@{/logout}">Logout</a></li>
-</menu>
-
-<h2>Welcome
-    <span th:text="${#authentication.name}"></span>
-</h2>
+<div th:insert="fragment/navbar::navbar"></div>
+<div class="container-xxl">
+    <br><br><br><br><br>
+    <div class="container input-group w-30 d-flex justify-content-center">
+<div class="container mt-5">
+    <h2>Welcome
+        <span th:text="${#authentication.name}" class="text-primary"></span>
+    </h2>
+</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const logoutButton = document.querySelector('a[href="/logout"]');
+            const csrfInput = document.querySelector('input[name="_csrf"]');
+            const form = new FormData();
+            form.append('_csrf', csrfInput.value);
+            logoutButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                fetch("/logout", {
+                    method: 'post',
+                    body: form
+                }).then(() => location.reload());
+            });
+        });
+    </script>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
