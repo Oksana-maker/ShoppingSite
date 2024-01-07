@@ -1,0 +1,17 @@
+# example .gitpod.yml from https://github.com/gitpod-io/demo-multi-repo-frontend
+additionalRepositories:
+    - url: https://github.com/gitpod-io/demo-multi-repo-backend
+      # checkoutLocation is optional and relative to /workspaces.
+      # by default the location defaults to the repository name.
+      checkoutLocation: backend
+
+tasks:
+    - name: app
+      # change working directory as per configured in `checkoutLocation`
+      # which is configured above as `/workspaces/backend`
+      before: |
+          cd ../backend
+      init: |
+          echo npm install
+      command: |
+          docker run -p 8080:8080 oksanamashurova300/java-image
